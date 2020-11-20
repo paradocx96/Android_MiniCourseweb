@@ -149,6 +149,84 @@ public class DBHandler extends SQLiteOpenHelper {
         // End of readUserInfo function
     }
 
+    public List readAllMessage(String request) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                Message.Messages.COLUMN_ID,
+                Message.Messages.COLUMN_USER,
+                Message.Messages.COLUMN_SUBJECT,
+                Message.Messages.COLUMN_MESSAGE
+        };
+
+        String sortOrder = Message.Messages.COLUMN_ID + " DESC";
+
+        Cursor cursor = db.query(
+                Message.Messages.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+
+        List USER = new ArrayList<>();
+        List SUBJECT = new ArrayList<>();
+        List MESSAGE = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            String users = cursor.getString(cursor.getColumnIndexOrThrow(Message.Messages.COLUMN_USER));
+            String subjects = cursor.getString(cursor.getColumnIndexOrThrow(Message.Messages.COLUMN_SUBJECT));
+            String messages = cursor.getString(cursor.getColumnIndexOrThrow(Message.Messages.COLUMN_MESSAGE));
+            USER.add(users);
+            SUBJECT.add(subjects);
+            MESSAGE.add(messages);
+        }
+
+        cursor.close();
+
+        if (request == "User" || request == "user") {
+            return USER;
+        }
+        else if (request == "Subject" || request == "subject") {
+            return SUBJECT;
+        }
+        else if (request == "Message" || request == "message") {
+            return MESSAGE;
+        }
+        else {
+            return null;
+        }
+        // End of readAllMessage function
+    }
+
+    public Cursor readAllMessages(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                Message.Messages.COLUMN_ID,
+                Message.Messages.COLUMN_USER,
+                Message.Messages.COLUMN_SUBJECT,
+                Message.Messages.COLUMN_MESSAGE
+        };
+
+        String sortOrder = Message.Messages.COLUMN_ID + " DESC";
+
+        Cursor cursor = db.query(
+                Message.Messages.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+
+        return cursor;
+    }
+
 
 
 }
