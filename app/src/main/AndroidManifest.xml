@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MADLab11">
-        <activity android:name=".Message"></activity>
-        <activity android:name=".Student" />
+        <activity
+            android:name=".Message"
+            android:parentActivityName="com.sliit.madlab11.Student" />
+        <activity android:name=".Student"/>
         <activity android:name=".Teacher" />
         <activity android:name=".Register" />
         <activity android:name=".MainActivity">

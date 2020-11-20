@@ -15,5 +15,7 @@
     <string name="item">Item</string>
     <string name="subitem">Sub Item</string>
     <string name="lecturer">Lecurer</string>
+    <string name="channel_name">Student Message</string>
+    <string name="channel_description">Student Latest Message</string>
     <!--<string name=""></string>-->
 </resources>
